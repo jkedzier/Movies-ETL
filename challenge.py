@@ -1,5 +1,13 @@
 #Reusable Functions
 #Remove alternate titles and change column names as needed
+import json
+import pandas as pd
+import numpy as np
+from sqlalchemy import create_engine
+import time
+import re
+from config import db_password
+
 def clean_movie(movie):
     
     movie = dict(movie) #create a non-destructive copy
@@ -92,14 +100,7 @@ def parse_dollars(s):
     
 #Define Function to perform ETL
 def model_build(wiki_movies_file,kaggle_metadata,ratings_file):
-    import json
-    import pandas as pd
-    import numpy as np
-    from sqlalchemy import create_engine
-    import time
-    import re
-    from config import db_password
-    
+        
     #Extract the Data
     try:
         file_dir="C:/Users/Joshua/Movies-ETL/"
