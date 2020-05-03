@@ -1,14 +1,14 @@
-import json
-import pandas as pd
-import numpy as np
-from sqlalchemy import create_engine
-import time
-import re
-from config import db_password
-
 #Reusable Functions
 #Remove alternate titles and change column names as needed
 def clean_movie(movie):
+    import json
+    import pandas as pd
+    import numpy as np
+    from sqlalchemy import create_engine
+    import time
+    import re
+    from config import db_password
+
     movie = dict(movie) #create a non-destructive copy
     alt_titles = {}
     # combine alternate titles into one list
