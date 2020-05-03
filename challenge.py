@@ -1,5 +1,4 @@
-#Reusable Functions
-#Remove alternate titles and change column names as needed
+#Centralizing all that needs to be imported
 import json
 import pandas as pd
 import numpy as np
@@ -8,6 +7,8 @@ import time
 import re
 from config import db_password
 
+#Reusable cleansing Functions
+#Remove alternate titles and change column names as needed
 def clean_movie(movie):
     
     movie = dict(movie) #create a non-destructive copy
@@ -51,7 +52,7 @@ def clean_movie(movie):
     return movie
 
 
- #Function to parse amounts
+#Function to parse amounts
 def parse_dollars(s):
     # if s is not a string, return NaN
     if type(s) != str:
@@ -98,7 +99,7 @@ def parse_dollars(s):
         return np.nan
     
     
-#Define Function to perform ETL
+#This is the main function to perform the extraction, transformation, and loading of data
 def model_build(wiki_movies_file,kaggle_metadata,ratings_file):
         
     #Extract the Data
