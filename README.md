@@ -1,5 +1,10 @@
 # Movies-ETL
 
+To support an automated pipeline, a Python function was prepared to automate the extraction, load, and transformation of data from 3 sources into a final Postgre Table
+
+##
+Inputs include a Kaggle Metadata file, Wikipedia JSON, and a Ratings extract
+
 ## Assumptions
 
 This pipeline is built upon a number of assumptions that were based upon the initial analysis.  These assumptions include:
