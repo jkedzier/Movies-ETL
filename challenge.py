@@ -241,7 +241,7 @@ def model_build(wiki_movies_file,kaggle_metadata,ratings_file):
         #Write Data Frame to the table
         db_string = f"postgres://postgres:{db_password}@127.0.0.1:5432/movie_data"
         engine = create_engine(db_string)
-        movies_df.to_sql(name='movies2', con=engine, if_exists='append')
+        movies_df.to_sql(name='movies', con=engine, if_exists='append')
         rows_imported = 0
         # get the start_time from time.time()
         start_time = time.time()
