@@ -1,14 +1,7 @@
 #Reusable Functions
 #Remove alternate titles and change column names as needed
 def clean_movie(movie):
-    import json
-    import pandas as pd
-    import numpy as np
-    from sqlalchemy import create_engine
-    import time
-    import re
-    from config import db_password
-
+    
     movie = dict(movie) #create a non-destructive copy
     alt_titles = {}
     # combine alternate titles into one list
@@ -99,6 +92,13 @@ def parse_dollars(s):
     
 #Define Function to perform ETL
 def model_build(wiki_movies_file,kaggle_metadata,ratings_file):
+    import json
+    import pandas as pd
+    import numpy as np
+    from sqlalchemy import create_engine
+    import time
+    import re
+    from config import db_password
     
     #Extract the Data
     try:
@@ -241,13 +241,13 @@ def model_build(wiki_movies_file,kaggle_metadata,ratings_file):
         #Write Data Frame to the table
         db_string = f"postgres://postgres:{db_password}@127.0.0.1:5432/movie_data"
         engine = create_engine(db_string)
-        movies_df.to_sql(name='movies', con=engine, if_exists='append')
+        movies_df.to_sql(name='movies', con=engine, if_exists='replace')
         rows_imported = 0
         # get the start_time from time.time()
         start_time = time.time()
         for data in pd.read_csv(f'{file_dir}ratings.csv', chunksize=1000000):
             print(f'importing rows {rows_imported} to {rows_imported + len(data)}...', end='')
-            data.to_sql(name='ratings', con=engine, if_exists='append')
+            data.to_sql(name='ratings', con=engine, if_exists='replace')
             rows_imported += len(data)
 
             # add elapsed time to final print out
